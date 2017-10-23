@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>ExoJS session_1</title>
+        <!-- CSS -->
+            <style>
+                #div_1, #div_2, #div_3, #div_4, #div_5 {
+                    height: 60px;
+                    width: 60px;
+                    border: solid 4px;
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: middle;
+                    line-height: 60px;
+                    cursor: pointer;
+                }
+                #titre_list {
+                    font-size: 2.5rem;
+                    color: #000;
+                }
+                p {
+                    font-size: 1rem;
+                    color: crimson;
+                }
+            </style>
+    </head>
+    <body>
+        <h1>Exo JS Session_1</h1>
+        <!-- Exo 4 -->
+        <div id="res_user1"></div>
+        <br>
+        <!-- Exo 5 -->
+        <div onclick="changeColor()" id="div_1">1</div>
+        <div onclick="changeColor()" id="div_2">2</div>
+        <div onclick="changeColor()" id="div_3">3</div>
+        <div onclick="changeColor()" id="div_4">4</div>
+        <div onclick="changeColor()" id="div_5">5</div>
+        <br>
+        <p id="titre_list">Listing des ids =></p>
+        <div id="list_div"></div>
+
+    <!-- JS -->
+        <script>
+            // Exo n°1 //
+            function displayTextBox(string) {
+                alert(string);
+                console.log(string);
+            }
+            displayTextBox("Hello world!");
+
+
+            // Exo n°2 //
+            function conCat(a, b) {
+                console.log(a + b);
+            }
+            conCat("C'est une belle journée ", "pour s'exercer à JS!&");
+
+
+            // Exo n°3 //
+            function multiply(a, b) {
+                var error = "error... error... !";
+                if ((typeof a === 'number') && (typeof b === 'number')) {
+                    console.log(a * b);
+                }else {
+                    alert (error);
+                }
+            }
+            multiply(6, 6);
+
+
+            // Exo n°4 //
+            var users = [{
+                        name: 'Toto',
+                        age: 37
+                    }, {
+                        name: 'Bibi',
+                        age: 24
+                    }];
+            // function get user name
+            function getName(user) {
+               if (user === 'user1') {
+                   return users[0].name;
+               }else if (user === 'user2') {
+                   return users[1].name;
+               }else {
+                   return 'désolé pas de user en parametre';
+               }
+            }
+            console.log(getName('user1'));
+            // function get user age
+            function getAge(user) {
+                if (user === 'user1') {
+                    return users[0].age;
+                }else if (user === 'user2') {
+                    return users[1].age;
+                }else {
+                    return 'désolé pas de user en parametre';
+                }
+            }
+            console.log(getAge('user1'));
+            // function display info
+            function displayUserInfo(user) {
+                var res_user = document.getElementById("res_user1");
+                var userName1 = users[0].name;
+                var userAge1 = users[0].age;
+                var userName2 = users[1].name;
+                var userAge2 = users[1].age;
+                if (user === 'user1') {
+                    return res_user.textContent = `User ${userName1} a ${userAge1} ans!`;
+                }else if (user === 'user2') {
+                    return res_user.textContent = `User ${userName2} a ${userAge2} ans!`;
+                }else {
+                    return res_user.textContent = "Vous n'avez pas d'user en parametre!";
+                }
+            }
+            displayUserInfo('user2');
+
+            // EXO 5
+            var div1 = document.getElementById("div_1");
+            var div2 = document.getElementById("div_2");
+            var div3 = document.getElementById("div_3");
+            var div4 = document.getElementById("div_4");
+            var div5 = document.getElementById("div_5");
+            var divs = [div1.id, div2.id, div3.id, div4.id, div5.id];
+
+            function addp() {
+                var c = 0;
+                for (var i = 0; i < divs.length; i++){
+                    c += 1;
+                    document.getElementById("list_div").innerHTML += "<p>L'id de la div n° " + c + " : " + divs[i] + "</p>";
+                }
+            }
+            addp();
+
+            // EXO 6
+            function randomColor() {
+                var n = '0123456789ABCDEF';
+                var c = '#';
+                for (var i = 0; i < 6; i++) {
+                    c += n[Math.floor(Math.random() * 16)];
+                }
+                return c;
+            }
+            function changeColor() {
+                var divColor = [div1, div2, div3, div4, div5];
+                for (var i = 0; i < divColor.length; i++){
+                    divColor[i].style.backgroundColor = randomColor();
+                }
+            }
+            changeColor();
+        </script>
+    </body>
+</html>
